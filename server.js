@@ -5,6 +5,7 @@ const cors = require("cors");
 const articles = require("./app/controllers/article.controller.js");
 const models = require("./app/models");
 const Article = models.articles;
+const Category = models.categories;
 
 const app = express();
 
@@ -40,6 +41,7 @@ app.get("/", (req, res) => {
 });
 
 require("./app/routes/article.routes")(app);
+require("./app/routes/category.routes")(app);
 
 async function mySeeder() {
   const data = await Article.find();
@@ -50,24 +52,52 @@ async function mySeeder() {
 
   let seed = [];
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 4; i++) {
    seed.push(
      new Article({
        title: `title ${i + 1}`,
        description: `description ${i + 1}`,
-       published: i % 2 == 0
+       published: i % 2 == 0,
+       categoryId: i + 1
      })
    );
   }
 
-  // some other seed logic
-  // ...
+  await seed.forEach(item => item.save());
+}
+
+async function categorySeeder() {
+  const data = await Category.find();
+  if (data && data.length !== 0) {
+      // Data exists, no need to seed.
+      return;
+  }
+
+  let seed = [
+    new Category({
+      id: 1,
+      name: 'Technology'
+    }),
+    new Category({
+      id: 2,
+      name: 'Sport'
+    }),
+    new Category({
+      id: 3,
+      name: 'Music'
+    }),
+    new Category({
+      id: 4,
+      name: 'Art'
+    })
+  ];
 
   await seed.forEach(item => item.save());
 }
 
 
 mySeeder();
+categorySeeder();
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

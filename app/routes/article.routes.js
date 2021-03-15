@@ -18,6 +18,9 @@ module.exports = app => {
   // Retrieve a single Article with id
   router.get("/:id", articles.findOne);
 
+  // Retrieve all Articles with categoryId
+  router.get("/category/:categoryId", articles.findAllByCategory);
+
   // Publish Article by id
   router.post("/publish/:id", articles.publish);
 

@@ -1,5 +1,6 @@
 const db = require("../models");
 const Article = db.articles;
+const Category = db.categories;
 
 // Create and Save a new Article
 exports.create = (req, res) => {
@@ -13,7 +14,8 @@ exports.create = (req, res) => {
   const article = new Article({
     title: req.body.title,
     description: req.body.description,
-    published: req.body.published ? req.body.published : false
+    published: req.body.published ? req.body.published : false,
+    categoryId: req.body.categoryId
   });
 
   // Save Article in the database
@@ -204,4 +206,19 @@ exports.publish = (req, res) => {
         message: "Error publishing Article with id=" + id
       });
     });
+};
+
+// Filter articles by category
+exports.findAllByCategory = (req, res) => {
+  const categoryId = req.params.categoryId;
+  Article.find({ categoryId: categoryId })
+  .then(data => {
+    res.send(data);
+  })
+  .catch(err => {
+    res.status(500).send({
+      message:
+        err.message || "Some error occurred while retrieving articles."
+    });
+  });
 };
