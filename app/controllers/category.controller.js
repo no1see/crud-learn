@@ -4,21 +4,19 @@ const Category = db.categories;
 // Create and Save a new Category
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.title) {
+  if (!req.body.name) {
     res.status(400).send({ message: "Content can not be empty!" });
     return;
   }
 
   // Create a Category
-  const Category = new Category({
-    title: req.body.title,
-    description: req.body.description,
-    published: req.body.published ? req.body.published : false
+  const category = new Category({
+    name: req.body.name
   });
 
   // Save Category in the database
-  Category
-    .save(Category)
+  category
+    .save(category)
     .then(data => {
       res.send(data);
     })

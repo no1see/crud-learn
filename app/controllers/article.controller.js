@@ -1,6 +1,5 @@
 const db = require("../models");
 const Article = db.articles;
-const Category = db.categories;
 
 // Create and Save a new Article
 exports.create = (req, res) => {
