@@ -15,5 +15,7 @@ module.exports = app => {
   // Update a category with id
   router.put("/:id", categories.update);
 
+  router.delete("/", categories.deleteAll);
+
   app.use("/api/categories", router);
 };

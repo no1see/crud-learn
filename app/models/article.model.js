@@ -6,7 +6,7 @@ module.exports = mongoose => {
       title: String,
       description: String,
       published: Boolean,
-      categoryId: Number
+      categoryId: String
     },
     { timestamps: true }
   );

@@ -58,7 +58,7 @@ async function mySeeder() {
        title: `title ${i + 1}`,
        description: `description ${i + 1}`,
        published: i % 2 == 0,
-       categoryId: i + 1
+       categoryId: i % 2 == 0 ? "604fd068b2690256a866fe00" : "604fd068b2690256a866fe01"
      })
    );
   }
@@ -75,19 +75,19 @@ async function categorySeeder() {
 
   let seed = [
     new Category({
-      id: 1,
+      _id: "604fd068b2690256a866fe00",
       name: 'Technology'
     }),
     new Category({
-      id: 2,
+      _id: "604fd068b2690256a866fe02",
       name: 'Sport'
     }),
     new Category({
-      id: 3,
+      _id: "604fd068b2690256a866fe01",
       name: 'Music'
     }),
     new Category({
-      id: 4,
+      _id: "6050581c0e50e65eac35586f",
       name: 'Art'
     })
   ];
