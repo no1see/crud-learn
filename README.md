@@ -1,9 +1,9 @@
-###baseURL
+## baseURL
 ```bash
 http://localhost:8080
 ```
 
-###CATEGORIES:
+## CATEGORIES:
 
 ```javascript
 GET {{baseUrl}}/api/categories 
@@ -25,7 +25,7 @@ GET {{baseUrl}}/api/categories/:id
 get category by id
 ```
 
-###ARTICLES:
+## ARTICLES:
 
 ```javascript
 GET {{baseUrl}}/api/articles
@@ -81,7 +81,7 @@ DELETE {{baseUrl}}/api/articles
 delete all articles
 ```
 
-###MODELS:
+## MODELS:
 
 ```javascript
 Article {
